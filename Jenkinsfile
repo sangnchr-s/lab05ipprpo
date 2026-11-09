@@ -6,9 +6,21 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
         stage('Build') {
             steps {
                 sh 'mvn compile'
+            }
+        }
+
+        stage('Static Analysis') {
+            steps {
+                sh 'mvn checkstyle:check'
             }
         }
 
@@ -21,14 +33,6 @@ pipeline {
         stage('Package') {
             steps {
                 sh 'mvn package -DskipTests'
-            }
-        }
-
-        
-        stage('Inspect Target') {
-            steps {
-                echo 'Содержимое каталога target после сборки:'
-                sh 'ls -la target'
             }
         }
     }

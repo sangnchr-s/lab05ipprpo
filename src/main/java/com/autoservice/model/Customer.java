@@ -2,9 +2,9 @@ package com.autoservice.model;
 
 public class Customer {
 
-    private final String id;     
-    private final String name;   
-    private final String phone;  
+    private final String id;
+    private final String name;
+    private final String phone;
 
     public Customer(String id, String name, String phone) {
         this.id = id;

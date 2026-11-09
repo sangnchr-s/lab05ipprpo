@@ -4,45 +4,79 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>by.ipprpo</groupId> 
-    <artifactId>auto-service</artifactId> 
+    <groupId>by.ipprpo</groupId>
+    <artifactId>auto-service</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Auto Service</name> 
-    <description>Система автосервиса: проект ЛР №4, Git и Jenkins</description> 
+    <name>Auto Service</name>
+    <description>Система автосервиса: проект ЛР №5, Static Analysis и Logging</description>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
-        <maven.compiler.release>17</maven.compiler.release> 
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>17</maven.compiler.release>
     </properties>
 
     <dependencies>
+        <!-- SLF4J: интерфейс логирования, через него код получает Logger -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId> 
-            <artifactId>junit-jupiter</artifactId> 
-            <version>5.11.4</version> 
-            <scope>test</scope> 
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.16</version>
+        </dependency>
+
+        <!-- Logback: реализация, которая реально выводит сообщения -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.12</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.11.4</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId> 
-                <artifactId>maven-compiler-plugin</artifactId> 
-                <version>3.13.0</version> 
-                <configuration> 
-                    <excludes> 
-                        <exclude>com/autoservice/experimental/**</exclude> 
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <excludes>
+                        <exclude>com/autoservice/experimental/**</exclude>
                     </excludes>
                 </configuration>
             </plugin>
 
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId> 
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.2</version> 
+                <version>3.5.2</version>
+            </plugin>
+
+            <!-- Checkstyle: запускается командой mvn checkstyle:check -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>  
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <configLocation>checkstyle.xml</configLocation> <!-- наши правила -->
+                    <consoleOutput>true</consoleOutput> <!-- нарушения будем выводить прямо в консоль -->
+                    <failOnViolation>true</failOnViolation> <!-- если есть нарушения, то сборка падает -->
+                    <violationSeverity>warning</violationSeverity> <!-- нарушения уровня warning тоже будут считаться ошибкой -->
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>10.20.1</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>

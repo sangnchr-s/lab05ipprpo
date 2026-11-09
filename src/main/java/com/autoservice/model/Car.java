@@ -2,9 +2,9 @@ package com.autoservice.model;
 
 public class Car {
 
-    private final String id;           
-    private final String brand;        
-    private final String plateNumber;  
+    private final String id;
+    private final String brand;
+    private final String plateNumber;
 
     public Car(String id, String brand, String plateNumber) {
         this.id = id;

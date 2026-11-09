@@ -96,4 +96,19 @@ class RepairServiceTest {
 
         assertTrue(service.getOrder("o1").isIssued(), "Автомобиль должен быть выдан клиенту");
     }
+
+    @Test
+    void createDuplicateOrderThrows() {
+        RepairService service = newService();
+        service.createOrder(newOrder());
+
+        assertThrows(IllegalStateException.class, () -> service.createOrder(newOrder()));
+    }
+
+    @Test
+    void createNullOrderThrows() {
+        RepairService service = newService();
+
+        assertThrows(IllegalArgumentException.class, () -> service.createOrder(null));
+    }
 }

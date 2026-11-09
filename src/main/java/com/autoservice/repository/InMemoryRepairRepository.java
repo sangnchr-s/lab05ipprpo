@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class InMemoryRepairRepository implements RepairRepository { 
+public class InMemoryRepairRepository implements RepairRepository {
 
     private final List<RepairOrder> orders = new ArrayList<>();
 

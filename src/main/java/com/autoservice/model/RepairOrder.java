@@ -2,11 +2,11 @@ package com.autoservice.model;
 
 public class RepairOrder {
 
-    private final String id;              
-    private final Car car;                
-    private final Customer customer;      
-    private final String description;     
-    private RepairStatus repairStatus;    
+    private final String id;
+    private final Car car;
+    private final Customer customer;
+    private final String description;
+    private RepairStatus repairStatus;
     private boolean completed;
     private boolean issued;
 
@@ -15,7 +15,7 @@ public class RepairOrder {
         this.car = car;
         this.customer = customer;
         this.description = description;
-        this.repairStatus = RepairStatus.NEW; 
+        this.repairStatus = RepairStatus.NEW;
         this.completed = false;
         this.issued = false;
     }
