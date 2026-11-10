@@ -16,7 +16,7 @@ public class Car {
         return id;
     }
 
-    public String GetBrand() {
+    public String getBrand() {
         return brand;
     }
 
