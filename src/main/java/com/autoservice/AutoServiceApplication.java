@@ -43,7 +43,6 @@ public class AutoServiceApplication {
         service.issueCar("o1");
         log.info("Автомобиль выдан: {}", service.getOrder("o1"));
 
-        // Проблемные сценарии: повторный заказ (WARN) и пустой заказ (ERROR)
         try {
             service.createOrder(order);
         } catch (IllegalStateException e) {

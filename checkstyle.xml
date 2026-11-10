@@ -28,7 +28,6 @@
 
         <module name="NeedBraces"/>
 
-        <!-- Вместо System.out.println нужно использовать Logger -->
         <module name="Regexp">
             <property name="format" value="System\.out\.println"/>
             <property name="illegalPattern" value="true"/>
